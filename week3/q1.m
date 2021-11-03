@@ -39,19 +39,17 @@ saveas(gcf, '6-7.png') % save the current graph to local drive
 % https://www.mathworks.com/help/matlab/ref/polarplot.html
 figure()
 x_6Real = x_6;
-x_6Imag = zeros(1, 2*sampleCou + 1);
-x_6Theta = atan2(x_6Imag, x_6Real);
-x_6Rho = sqrt(x_6Real.^2 + x_6Imag.^2);
-polarscatter(x_6Theta, x_6Rho)
+x_6Imag = j*zeros(1, 2*sampleCou + 1);
+x_6 = x_6Real + x_6Imag;
+polarscatter(angle(x_6), abs(x_6))
 set(gcf, 'Position', [0 0 800 800]); % set the resolution of the current graph
 saveas(gcf, '6_polar.png') % save the current graph to local drive
 
 figure()
-x_7Imag = x_7;
+x_7Imag = j*x_7;
 x_7Real = zeros(1, 2*sampleCou + 1);
-x_7Theta = atan2(x_7Imag, x_7Real);
-x_7Rho = sqrt(x_7Real.^2 + x_7Imag.^2);
-polarscatter(x_7Theta, x_7Rho)
+x_7 = x_7Real + x_7Imag;
+polarscatter(angle(x_7), abs(x_7))
 set(gcf, 'Position', [0 0 800 800]); % set the resolution of the current graph
 saveas(gcf, '7_polar.png') % save the current graph to local drive
 
@@ -59,7 +57,7 @@ saveas(gcf, '7_polar.png') % save the current graph to local drive
 % 
 % 
 % Beyond Quiz 
-% $$x\left\lbrack n\right\rbrack =C{\mathrm{e}}^{\beta n} \;\mathrm{where}\;\alpha =e^{\beta }$$
+% $$x\left\lbrack n\right\rbrack =C{\mathrm{e}}^{\beta n} \;\textrm{where}\;\alpha =e^{\beta }$$
 
 % https://www.mathworks.com/matlabcentral/answers/78973-semi-log-stem-plot
 % https://www.mathworks.com/matlabcentral/answers/1792-log-scale-graphic-with-negative-value
@@ -88,10 +86,9 @@ set(gcf, 'Position', [0 0 800 800]); % set the resolution of the current graph
 saveas(gcf, 'growingSinusoid-log.png') % save the current graph to local drive
 
 figure()
-sigXTheta = atan2(imag(sigX), real(sigX));
-sigXRho = sqrt(real(sigX).^2 + imag(sigX).^2);
-polarscatter(sigXTheta, sigXRho)
+polarscatter(angle(sigX), abs(sigX))
 % rlim([0 1e3])
+set(gcf, 'Position', [0 0 800 800]); % set the resolution of the current graph
 saveas(gcf, 'growingSpiral.png') % save the current graph to local drive
 %%
 function handleBeforePlot()
